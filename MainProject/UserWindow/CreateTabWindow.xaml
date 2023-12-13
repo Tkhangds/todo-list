@@ -1,0 +1,32 @@
+﻿<Window x:Class="MainProject.UserWindow.CreateTabWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MainProject.UserWindow"
+        mc:Ignorable="d"
+        Title="Create Tab" Height="150" Width="300"
+        WindowStartupLocation="CenterOwner"
+        >
+    <Grid>
+        <DockPanel LastChildFill="True">
+            <Label FontWeight="Bold" DockPanel.Dock="Top" HorizontalContentAlignment="Center">NEW TAB</Label>
+
+            <StackPanel DockPanel.Dock="Bottom"  Margin="0 0 0 10" Orientation="Horizontal">
+                <Button Click="CreateTabButton_Clicked" Margin="100 0 50 0">Tạo</Button>
+                <Button Click="CloseCreateTabButton_Clicked">Thoát</Button>
+            </StackPanel>
+
+            <StackPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Margin="20 0 0 0" FontSize="10">Tên Tab:</Label>
+                    <TextBox Name="tabTitletb" Grid.Row="1"  Width="250" Margin="5 0 5 5" HorizontalContentAlignment="Left" />
+                </Grid>
+            </StackPanel>
+        </DockPanel>
+    </Grid>
+</Window>
