@@ -13,7 +13,14 @@
         <DockPanel LastChildFill="True" Grid.Row="0">
             <TabControl Height="520" DockPanel.Dock="Top" Name="tabControl" FontSize="12">
             </TabControl>
-            <Button DockPanel.Dock="Bottom" Click="CreateTabButton_Clicked"> Create New Tab</Button>
+            <Grid DockPanel.Dock="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Click="CreateTabButton_Clicked">Create New Tab</Button>
+                <Button Grid.Column="1" Click="CreateTaskButton_Clicked">Create New Task</Button>
+            </Grid>
         </DockPanel>
         
     </Grid>

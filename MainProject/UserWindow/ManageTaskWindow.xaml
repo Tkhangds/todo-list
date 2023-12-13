@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainProject.UserWindow"
         mc:Ignorable="d"
-        Title="Create Task Window" Height="230" Width="400">
+        Title="Task Window" Height="230" Width="400"
+        WindowStartupLocation="CenterOwner">
     <Grid>
         <DockPanel LastChildFill="True">
-            <Label FontWeight="Bold" DockPanel.Dock="Top" HorizontalContentAlignment="Center">NEW TASK</Label>
+            <Label FontWeight="Bold" DockPanel.Dock="Top" HorizontalContentAlignment="Center">TASK INFO</Label>
 
             <StackPanel DockPanel.Dock="Bottom"  Margin="0 0 0 10" Orientation="Horizontal">
-                <Button Margin="150 0 50 0"> Lưu </Button>
+                <Button  Margin="150 0 50 0"> Lưu </Button>
                 <Button> Thoát </Button>
             </StackPanel>
             

@@ -19,9 +19,14 @@ namespace MainProject.UserWindow
     /// </summary>
     public partial class ManageTaskWindow : Window
     {
-        public ManageTaskWindow()
+        MainWindow mainWindow;
+
+        public ManageTaskWindow(MainWindow mainWindow)
         {
             InitializeComponent();
+            this.mainWindow = mainWindow;
         }
+
+
     }
 }

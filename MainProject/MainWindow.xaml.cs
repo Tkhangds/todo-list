@@ -41,5 +41,12 @@ namespace MainProject
             createTabWindow.Show();
             tabControl.SelectedIndex = currentTabIndex;
         }
+
+        private void CreateTaskButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            var createTabWindow = new ManageTaskWindow(this);
+            createTabWindow.Owner = this;
+            createTabWindow.Show();
+        }
     }
 }
