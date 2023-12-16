@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MainProject.Model;
+using MainProject.UserWindow;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,22 +21,49 @@ namespace MainProject.CustomControl
     /// </summary>
     public partial class CloseableHeader : UserControl
     {
+        public TAB? closeableHeadTAB; 
+
+        private TODOLIST db = new TODOLIST();
+
         public CloseableHeader()
         {
             InitializeComponent();
         }
 
         private void closeButton_Clicked(object sender, RoutedEventArgs e)
-        {
-            (this.Parent as TabItem).Visibility = Visibility.Collapsed;
+        {   
+            TabItem deleteItem = (this.Parent as TabItem);
+
+            db.TABs.Remove(closeableHeadTAB);
+
+            MainWindow.tabItems.Remove(deleteItem);
+
+            db.SaveChanges();
         }
 
-        public static readonly DependencyProperty TitleProperty = DependencyProperty.Register("Title",typeof(string),typeof(CloseableHeader),new PropertyMetadata("Tab Title"));
+        private void InfoButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            TabItem infoItem = (this.Parent as TabItem);
+
+            var tabInfoWindow = new CreateTabWindow { Title = "TAB INFO" };
+
+            tabInfoWindow.Owner = Application.Current.MainWindow;
+
+            tabInfoWindow.updatingTab = (infoItem.Header as CloseableHeader).closeableHeadTAB;
+
+            tabInfoWindow.ThisTitle = tabInfoWindow.updatingTab.Title;
+
+            tabInfoWindow.ShowDialog();
+
+            Title = tabInfoWindow.updatingTab.Title;
+        }
+
+        public static readonly DependencyProperty TitleProperty = DependencyProperty.Register("Title", typeof(string), typeof(CloseableHeader), new PropertyMetadata());
 
         public string Title
         {
             get { return (string)GetValue(TitleProperty); }
-            set { SetValue(TitleProperty,value) ; }
+            set { SetValue(TitleProperty, value); }
         }
     }
 }

@@ -6,15 +6,25 @@
         xmlns:local="clr-namespace:MainProject.UserWindow"
         mc:Ignorable="d"
         Title="Task Window" Height="230" Width="400"
-        WindowStartupLocation="CenterOwner">
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="#ffeede"
+        >
     <Grid>
         <DockPanel LastChildFill="True">
-            <Label FontWeight="Bold" DockPanel.Dock="Top" HorizontalContentAlignment="Center">TASK INFO</Label>
+            <Label Style="{StaticResource myLabel}" FontWeight="Bold" DockPanel.Dock="Top" HorizontalContentAlignment="Center">TASK INFO</Label>
 
-            <StackPanel DockPanel.Dock="Bottom"  Margin="0 0 0 10" Orientation="Horizontal">
-                <Button  Margin="150 0 50 0"> Lưu </Button>
-                <Button> Thoát </Button>
-            </StackPanel>
+            <Grid DockPanel.Dock="Bottom"  Margin="0 0 0 10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1" Style="{StaticResource mySubWindowButton}" Click="TaskManageButton_Clicked"> Lưu </Button>
+                <Button Grid.Column="3" Style="{StaticResource mySubWindowButton}" Click="CloseTaskManageButton_Clicked"> Thoát </Button>
+            </Grid>
             
             <StackPanel>
                 <Grid>
@@ -22,16 +32,16 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Label Margin="20 0 0 0" FontSize="10"> Tiêu đề: </Label>
-                    <TextBox VerticalAlignment="Stretch" Grid.Row="1" Width=" 350" HorizontalContentAlignment="Center" ></TextBox>
+                    <Label Style="{StaticResource myLabel}" Margin="20 0 0 0"> Tiêu đề: </Label>
+                    <TextBox x:Name="TaskTitletb" Text="{Binding ThisTitle,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Stretch" Grid.Row="1" Width=" 350" HorizontalContentAlignment="Left" ></TextBox>
                 </Grid>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Label Margin="20 0 0 0" FontSize="10">Chi tiết: </Label>
-                    <TextBox Grid.Row="1" MaxLines="3" TextWrapping="Wrap" AcceptsReturn="True" Width="350" Margin="0 0 0 5" HorizontalContentAlignment="Center" Height="50" />
+                    <Label Style="{StaticResource myLabel}" Margin="20 0 0 0">Chi tiết: </Label>
+                    <TextBox x:Name="Descriptiontb" Text="{Binding ThisDescription,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" MaxLines="3" TextWrapping="Wrap" AcceptsReturn="True" Width="350" Margin="0 0 0 5" HorizontalContentAlignment="Left" Height="50" />
                 </Grid>
             </StackPanel>
         </DockPanel>

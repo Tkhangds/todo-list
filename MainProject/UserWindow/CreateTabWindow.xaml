@@ -5,17 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MainProject.UserWindow"
         mc:Ignorable="d"
-        Title="Create Tab" Height="150" Width="300"
+        Title="Create Tab" Height="170" Width="300"
         WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        Background="#ffeede "
         >
     <Grid>
         <DockPanel LastChildFill="True">
-            <Label FontWeight="Bold" DockPanel.Dock="Top" HorizontalContentAlignment="Center">NEW TAB</Label>
+            <Label FontWeight="Bold" DockPanel.Dock="Top" HorizontalContentAlignment="Center">TAB INFO</Label>
 
-            <StackPanel DockPanel.Dock="Bottom"  Margin="0 0 0 10" Orientation="Horizontal">
-                <Button Click="CreateTabButton_Clicked" Margin="100 0 50 0">Tạo</Button>
-                <Button Click="CloseCreateTabButton_Clicked">Thoát</Button>
-            </StackPanel>
+            <Grid DockPanel.Dock="Bottom"  Margin="0 0 0 10" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1" Style="{StaticResource mySubWindowButton}" Click="CreateTabButton_Clicked">Lưu</Button>
+                <Button Grid.Column="3" Style="{StaticResource mySubWindowButton}" Click="CloseCreateTabButton_Clicked">Thoát</Button>
+            </Grid>
 
             <StackPanel>
                 <Grid>
@@ -23,8 +32,8 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Label Margin="20 0 0 0" FontSize="10">Tên Tab:</Label>
-                    <TextBox Name="tabTitletb" Grid.Row="1"  Width="250" Margin="5 0 5 5" HorizontalContentAlignment="Left" />
+                    <Label Style="{StaticResource myLabel}" Margin="20 0 0 0">Tên Tab:</Label>
+                    <TextBox Text="{Binding ThisTitle,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Name="tabTitletb" Grid.Row="1"  Width="250" Margin="5 0 5 5" HorizontalContentAlignment="Left" />
                 </Grid>
             </StackPanel>
         </DockPanel>

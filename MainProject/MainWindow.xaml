@@ -8,20 +8,35 @@
         mc:Ignorable="d"
         Title="My To Do List" Height="600" Width="400"
         WindowStyle="ToolWindow"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        Icon=".\Assets\favicon.ico"
+        Background="#77BD42"
+        ResizeMode="CanMinimize">
     <Grid>
         <DockPanel LastChildFill="True" Grid.Row="0">
-            <TabControl Height="520" DockPanel.Dock="Top" Name="tabControl" FontSize="12">
-            </TabControl>
+            <TabControl Height="520" 
+                        SelectionChanged="TabChanged" 
+                        DockPanel.Dock="Top" 
+                        Name="tabControl" 
+                        FontSize="12"/>
+
+
             <Grid DockPanel.Dock="Bottom">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Click="CreateTabButton_Clicked">Create New Tab</Button>
-                <Button Grid.Column="1" Click="CreateTaskButton_Clicked">Create New Task</Button>
+
+                <Button Style="{StaticResource myButton}" Grid.Column="0" 
+                        Click="CreateTabButton_Clicked">
+                    Create New Tab
+                </Button>
+
+                <Button Style="{StaticResource myButton}" Grid.Column="1" 
+                        Click="CreateTaskButton_Clicked">
+                    Create New Task
+                </Button>
             </Grid>
         </DockPanel>
-        
     </Grid>
 </Window>

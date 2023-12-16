@@ -7,8 +7,65 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <DataGrid Name="testGrid" ItemsSource="{Binding ObserColl, RelativeSource={RelativeSource AncestorType=UserControl}}">
-            
+        <DataGrid Style="{StaticResource myDataGrid}" 
+                  CanUserSortColumns="False"
+                  CanUserReorderColumns="False" 
+                  CanUserResizeColumns="False" 
+                  CanUserResizeRows="False" 
+                  CanUserAddRows="False" 
+                  AutoGenerateColumns="False" 
+                  Name="testGrid" 
+                  ItemsSource="{Binding ObserColl,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource AncestorType=UserControl}}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Header="Priorities">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <CheckBox
+                                    Checked="PrioritiesCheckBox_Checked"
+                                    Unchecked="PrioritiesCheckBox_Checked"
+                                    IsChecked="{Binding Favorite,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"/>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTextColumn CanUserSort="False" 
+                                    FontSize="16" 
+                                    IsReadOnly="True" 
+                                    Header="Title" Width="*" 
+                                    Binding="{Binding Title,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                
+                <DataGridTemplateColumn Header="INFO">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Button Height="30"
+                                        Style="{StaticResource myEditButton}"
+                                        Click="EditButton_Clicked"
+                                        Content="INFO"/>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Header="DONE">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Button Height="30"
+                                        Style="{StaticResource myDoneButton}"
+                                        Click="DoneButton_Clicked" 
+                                        Content="DONE"
+                                       >
+                                </Button>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </UserControl>

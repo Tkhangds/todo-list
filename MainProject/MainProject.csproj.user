@@ -21,6 +21,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Style\ButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\DataGridStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\LabelStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="UserWindow\ManageTaskWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

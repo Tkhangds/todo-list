@@ -1,9 +1,10 @@
 ﻿using MainProject.CustomControl;
+using MainProject.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -18,16 +19,16 @@ namespace MainProject.UserWindow
     /// <summary>
     /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class CreateTabWindow : Window
+    public partial class CreateTabWindow : Window,INotifyPropertyChanged
     {
-        public string tabTitle;
+        private TODOLIST db = new TODOLIST();
 
-        MainWindow mainWindow;
+        public TAB? updatingTab;
 
-        public CreateTabWindow(MainWindow main)
+        public CreateTabWindow()
         {
             InitializeComponent();
-            mainWindow = main;
+            this.DataContext = this;
         }
 
         private void CloseCreateTabButton_Clicked(object sender, RoutedEventArgs e)
@@ -42,10 +43,61 @@ namespace MainProject.UserWindow
                 MessageBox.Show("Nhập tên tab!");
                 return;
             }
-            TabItem tabItem = new TabItem { Header = new CloseableHeader { Title = tabTitletb.Text } };
-            MainWindow.tabItems.Add(tabItem);
-            MainWindow.currentTabIndex = MainWindow.tabItems.IndexOf(tabItem) + 1;
+
+            if (db.TABs.Contains(updatingTab))
+            {
+                updatingTab.Title = ThisTitle;
+
+                db.TABs.Attach(updatingTab);
+
+                db.TABs.Update(updatingTab);
+
+                db.SaveChanges();
+            }
+            else
+            {
+                TAB tAB = new TAB { Title = tabTitletb.Text };
+
+                db.TABs.Add(tAB);
+
+                db.SaveChanges();               
+
+                db.Entry(tAB).Reload();
+
+                TabItem tabItem = new TabItem
+                {
+                    Header = new CloseableHeader { Title = tabTitletb.Text, closeableHeadTAB = tAB },
+                    Content = new Task { TabID = tAB.TabId }
+                };
+
+                MainWindow.tabItems.Add(tabItem);
+
+                MainWindow.currentTabIndex = MainWindow.tabItems.IndexOf(tabItem);
+            }
+
             this.Close();
+        }
+
+        private void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public string? thisTitle;
+
+        public string? ThisTitle
+        {
+            get
+            {
+                return thisTitle;
+            }
+            set
+            {
+                thisTitle = value;
+                NotifyPropertyChanged(ThisTitle);
+            }
         }
     }
 }

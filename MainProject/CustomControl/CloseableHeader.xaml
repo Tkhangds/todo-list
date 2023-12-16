@@ -8,12 +8,21 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <StackPanel Orientation="Horizontal">
+            <Button
+                    Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
+                    Click="InfoButton_Clicked"
+                    FontSize="14"
+                    FontWeight="Bold">
+                ⋮
+            </Button>
+            
             <Label Name="label_TabTitle"
-                   Content="{Binding Title, RelativeSource={RelativeSource AncestorType=UserControl}}"></Label>
+                   Content="{Binding Title,RelativeSource={RelativeSource AncestorType=UserControl}}"
+                   MaxWidth="80"/>
+            
             <Button Name="button_TabClose"
                     Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}"
-                    Click="closeButton_Clicked"
-                    >
+                    Click="closeButton_Clicked">
                 ✖
             </Button>
         </StackPanel>
